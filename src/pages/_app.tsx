@@ -3,11 +3,14 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
+import React from "react";
+import TopNavBar from "~/components/topNav";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
       <ClerkProvider {...pageProps}>
-        <Component {...pageProps} />
+          <TopNavBar />
+          <Component {...pageProps} />
       </ClerkProvider>
   );
 };

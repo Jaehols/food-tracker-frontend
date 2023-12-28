@@ -27,6 +27,27 @@ export const foodEntryRouter = createTRPCRouter({
         }
         return await response.json() as FoodDiaryEntry;
    }),
+
+  getAllEntriesForUser: privateProcedure
+      .query(async ({ ctx }): Promise<FoodDiaryEntry[]> => {
+        const response = await fetch(baseUrl+`entriesByAuthor/${ctx.userId}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch food diary entries');
+        }
+        console.log(response)
+        return await response.json() as FoodDiaryEntry[];
+      }),
+
+  getAllEntriesForUserInDateRange: privateProcedure
+        .input(z.object({ startDate: z.string(), endDate: z.string() }))
+        .query(async ({ input , ctx}): Promise<FoodDiaryEntry[]> => {
+            const response = await fetch(baseUrl+`entriesByAuthor/${ctx.userId}`+`?startDate=${input.startDate}`+`&endDate=${input.endDate}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch food diary entries');
+            }
+            return await response.json() as FoodDiaryEntry[];
+        }),
+
   postFoodDiaryEntry: privateProcedure.input(
         z.object({
             entryTime: z.string(),
@@ -35,11 +56,7 @@ export const foodEntryRouter = createTRPCRouter({
             kilojoules: z.number()
         })
     ).mutation(async ({ input, ctx }): Promise<{ location: string }> => {
-        console.log("Anyone home")
-        console.log(ctx.userId)
         const inputWithUserId = {...input, userId: ctx.userId};
-        console.log("Anyone home")
-        console.log(inputWithUserId)
         const response = await fetch(baseUrl+`new-entry`, {
             method: 'POST',
             headers: {
@@ -47,7 +64,6 @@ export const foodEntryRouter = createTRPCRouter({
             },
             body: JSON.stringify(inputWithUserId)
         });
-        console.log(response)
         if (!response.ok) {
             throw new Error('Failed to post food diary entry');
         }
