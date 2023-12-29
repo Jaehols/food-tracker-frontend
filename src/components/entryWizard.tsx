@@ -33,46 +33,47 @@ const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment
         setMealDescription('');
         setAdditionalComments('');
         setKilojoules('');
-        console.log("Entry submitted, calling refetch");
-
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <input
-                    type="datetime-local"
-                    value={entryTime}
-                    onChange={(e) => setEntryTime(e.target.value)}
-                    className="bg-transparent w-full text-accentOne"
-                />
+        <form onSubmit={handleSubmit} className="w-full">
+            <div className="flex justify-between gap-4">
+                <div className="flex-1">
+                    <input
+                        placeholder="Meal Description"
+                        value={mealDescription}
+                        onChange={(e) => setMealDescription(e.target.value)}
+                        className="bg-accentTwo bg-opacity-20 rounded-lg w-full text-accentOne placeholder-accentOne p-1"
+                    />
+                </div>
+                <div className="flex-1">
+                    <input
+                        type="datetime-local"
+                        value={entryTime}
+                        onChange={(e) => setEntryTime(e.target.value)}
+                        className="bg-accentTwo bg-opacity-20 rounded-lg w-full text-accentOne p-1"
+                    />
+                </div>
             </div>
-            <div>
-                <input
-                    placeholder="Meal Description"
-                    value={mealDescription}
-                    onChange={(e) => setMealDescription(e.target.value)}
-                    className="bg-transparent w-full text-accentOne"
-                />
+            <div className="mt-4">
+        <textarea
+            placeholder="Additional Comments"
+            value={additionalComments}
+            onChange={(e) => setAdditionalComments(e.target.value)}
+            className="bg-accentTwo bg-opacity-20 rounded-lg w-full text-accentOne placeholder-accentOne p-1"
+            rows={4}
+        ></textarea>
             </div>
-            <div>
-                <input
-                    placeholder="Additional Comments"
-                    value={additionalComments}
-                    onChange={(e) => setAdditionalComments(e.target.value)}
-                    className="bg-transparent w-full text-accentOne"
-                />
-            </div>
-            <div>
+            <div className="mt-4">
                 <input
                     placeholder="Kilojoules"
                     value={kilojoules}
                     onChange={(e) => setKilojoules(e.target.value)}
-                    className="bg-transparent w-full text-accentOne"
+                    className="bg-accentTwo bg-opacity-20 rounded-lg w-full text-accentOne placeholder-accentOne p-1"
                     type="number"
                 />
             </div>
-            <div>
+            <div className="mt-4">
                 <button type="submit" className="bg-secondary text-accentTwo py-2 px-4 rounded">Submit Entry</button>
             </div>
         </form>

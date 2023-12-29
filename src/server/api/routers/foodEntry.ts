@@ -70,4 +70,22 @@ export const foodEntryRouter = createTRPCRouter({
         const location = response.headers.get('Location') ?? ``;
         return {location: location};
     }),
+
+  deleteFoodDiaryEntry: privateProcedure.input(
+        z.object({
+            entryId: z.string()
+        })
+    ).mutation(async ({ input , ctx}): Promise<{ location: string }> => {
+        const response = await fetch(baseUrl+`entry/${input.entryId}` + `?userId=${ctx.userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to delete food diary entry');
+        }
+        const location = response.headers.get('Location') ?? ``;
+        return {location: location};
+    }),
 });

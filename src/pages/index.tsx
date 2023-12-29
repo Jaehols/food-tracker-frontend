@@ -7,7 +7,8 @@ import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {LoadingSpinner} from "~/components/loading";
 import CreateEntryWizard from "~/components/entryWizard";
 import moment from 'moment-timezone';
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import { TrashIcon } from '@heroicons/react/24/outline';
 dayjs.extend(localizedFormat)
 
 
@@ -20,7 +21,6 @@ export default function Home() {
     const {data: authorList, isLoading: fullListLoading, refetch } = api.foodDiary.getAllEntriesForUserInDateRange.useQuery({startDate, endDate})
 
     useEffect(() => {
-        console.log("Refetching data for", startDate, "to", endDate);
         refetch();
     }, [startDate, endDate]);
 
@@ -30,19 +30,45 @@ export default function Home() {
     };
 
 
-    const ShortDiaryView = (props: FoodDiaryEntry) => {
-        return(
+    const ShortDiaryView = (props: {
+        entry: FoodDiaryEntry;
+        key: number;
+        }) => {
+
+        const {mutate} = api.foodDiary.deleteFoodDiaryEntry.useMutation()
+        const [isVisible, setIsVisible] = useState(true);
+
+        const handleDelete = () => {
+            mutate({entryId: props.entry.entryId});
+            setIsVisible(false);
+        };
+
+        if (!isVisible) return null;
+
+        return (
             <div className="flex gap-3 p-2 bg-secondary bg-opacity-20 rounded-lg">
                 <div className="flex flex-col w-full">
                     <div className="flex gap-3 justify-between">
-                        <div className="font-bold text-accentTwo">{props.mealDescription}</div>
-                        <div className="text-accentOne">{dayjs(props.entryTime).format(`LT`)}</div>
+                        <div className="font-bold text-accentTwo">{props.entry.mealDescription}</div>
+                        <div className="text-accentOne">{dayjs(props.entry.entryTime).format(`LT`)}</div>
                     </div>
-                    <div className="text-accentOne">{props.additionalComments}</div>
-                    <div className="text-accentOne">Kilojoules: {props.kilojoules}</div>
+                <div>
+                    <div className="text-accentOne">{props.entry.additionalComments}</div>
+                </div>
+                <div className="flex justify-between">
+                        <div>
+                            <div className="text-accentOne">Kilojoules: {props.entry.kilojoules}</div>
+                        </div>
+                        <button
+                            onClick={handleDelete}
+                            className="p-2 rounded-full bg-secondary hover:bg-accentOne focus:outline-none focus:ring-2 focus:ring-accentOne focus:ring-opacity-50"
+                        >
+                            <TrashIcon className="h-5 w-5 text-primary" />
+                        </button>
+                    </div>
                 </div>
             </div>
-        )
+        );
     }
 
     const DayView = ({ entries, isLoading, date }: { entries: FoodDiaryEntry[], isLoading: boolean, date: Date }) => {
@@ -63,7 +89,7 @@ export default function Home() {
             <div className="flex flex-col gap-4">
                 <div className="justify-center flex text-4xl text-accentOne font-bold">{title}</div>
                 {sortedEntries.map((entry, index) => (
-                    <ShortDiaryView key={index} {...entry} />
+                    <ShortDiaryView key={index} entry={entry}/>
                 ))}
             </div>
         );
@@ -86,7 +112,7 @@ export default function Home() {
             </Head>
             <main className="flex justify-center min-h-screen bg-primary">
                 <div className=" w-full md:max-w-2xl h-full ">
-                    <div className="flex border-b border-accentOne p-4 w-full" key={forceRenderKey}>
+                    <div className="flex border-b border-accentOne p-4 w-full bg" key={forceRenderKey}>
                         {<CreateEntryWizard onEntrySubmit={refetchData} currentDate={currentDate}/>}
                     </div>
                     <div className=" flex justify-between p-2">
