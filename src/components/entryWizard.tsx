@@ -14,7 +14,11 @@ const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment
         setEntryTime(currentDate.format('YYYY-MM-DDTHH:mm'));
     }, [currentDate]);
 
-    const {mutate} = api.foodDiary.postFoodDiaryEntry.useMutation();
+    const {mutate} = api.foodDiary.postFoodDiaryEntry.useMutation({
+        onSuccess: () => {
+            onEntrySubmit();
+        },
+    });
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const entryTimeInUtc = moment(entryTime).utc().format('YYYY-MM-DDTHH:mm');
@@ -24,12 +28,13 @@ const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment
             additionalComments,
             kilojoules: Number(kilojoules)
         };
+
         mutate(input);
-        setEntryTime(moment().format('YYYY-MM-DDTHH:mm'));
         setMealDescription('');
         setAdditionalComments('');
         setKilojoules('');
-        onEntrySubmit();
+        console.log("Entry submitted, calling refetch");
+
     };
 
     return (

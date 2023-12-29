@@ -4,7 +4,7 @@ import {api} from "~/utils/api";
 import {FoodDiaryEntry} from "~/server/api/routers/foodEntry";
 import dayjs from "dayjs";
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import {LoadingPage, LoadingSpinner} from "~/components/loading";
+import {LoadingSpinner} from "~/components/loading";
 import CreateEntryWizard from "~/components/entryWizard";
 import moment from 'moment-timezone';
 import {useEffect, useState} from "react";
@@ -13,20 +13,27 @@ dayjs.extend(localizedFormat)
 
 export default function Home() {
     const [currentDate, setCurrentDate] = useState(moment());
+    const [forceRenderKey, setForceRenderKey] = useState(Date.now());
 
     const startDate = currentDate.clone().startOf('day').format('YYYY-MM-DD');
     const endDate = currentDate.clone().endOf('day').format('YYYY-MM-DD');
     const {data: authorList, isLoading: fullListLoading, refetch } = api.foodDiary.getAllEntriesForUserInDateRange.useQuery({startDate, endDate})
 
     useEffect(() => {
+        console.log("Refetching data for", startDate, "to", endDate);
         refetch();
     }, [startDate, endDate]);
+
+    const refetchData = () => {
+        refetch();
+        setForceRenderKey(Date.now()); // Update the key to force re-render
+    };
 
 
     const ShortDiaryView = (props: FoodDiaryEntry) => {
         return(
             <div className="flex gap-3 p-2 bg-secondary bg-opacity-20 rounded-lg">
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                     <div className="flex gap-3 justify-between">
                         <div className="font-bold text-accentTwo">{props.mealDescription}</div>
                         <div className="text-accentOne">{dayjs(props.entryTime).format(`LT`)}</div>
@@ -51,7 +58,6 @@ export default function Home() {
         )
 
         const sortedEntries = [...entries].sort((a, b) => a.entryTime.localeCompare(b.entryTime));
-        console.log(sortedEntries)
 
         return (
             <div className="flex flex-col gap-4">
@@ -80,8 +86,8 @@ export default function Home() {
             </Head>
             <main className="flex justify-center min-h-screen bg-primary">
                 <div className=" w-full md:max-w-2xl h-full ">
-                    <div className="flex border-b border-accentOne p-4 ">
-                        {<CreateEntryWizard onEntrySubmit={refetch} currentDate={currentDate}/>}
+                    <div className="flex border-b border-accentOne p-4 w-full" key={forceRenderKey}>
+                        {<CreateEntryWizard onEntrySubmit={refetchData} currentDate={currentDate}/>}
                     </div>
                     <div className=" flex justify-between p-2">
                         <button onClick={ProgressBackOneDay} className="bg-secondary rounded-full p-2 text-accentTwo">&#8592;</button>
