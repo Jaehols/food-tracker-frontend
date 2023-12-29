@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Finally got posting new entries working my lord I cant believe I'm comitting to main">
-      <change afterPath="$PROJECT_DIR$/src/components/entryWizard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/loading.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Very messy date at the moment, works for looking at each day now shown in chronological order">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entryWizard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entryWizard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/api/routers/foodEntry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/api/routers/foodEntry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/api/trpc.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/api/trpc.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/globals.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +22,33 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/develop" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+        <option value="develop" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -46,7 +65,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/retrieve-all-entries-for-signed-in-user&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -73,8 +92,26 @@
       <workItem from="1703560562105" duration="3501000" />
       <workItem from="1703646865302" duration="24257000" />
       <workItem from="1703694464459" duration="13000" />
-      <workItem from="1703733210966" duration="441000" />
+      <workItem from="1703733210966" duration="23278000" />
+      <workItem from="1703829593711" duration="1491000" />
     </task>
+    <task id="LOCAL-00001" summary="Finally got posting new entries working my lord I cant believe I'm comitting to main">
+      <option name="closed" value="true" />
+      <created>1703733769056</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703733769056</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Very messy date at the moment, works for looking at each day now shown in chronological order">
+      <option name="closed" value="true" />
+      <created>1703759036674</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703759036675</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,6 +122,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Finally got posting new entries working my lord I cant believe I'm comitting to main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finally got posting new entries working my lord I cant believe I'm comitting to main" />
+    <MESSAGE value="Very messy date at the moment, works for looking at each day now shown in chronological order" />
+    <option name="LAST_COMMIT_MESSAGE" value="Very messy date at the moment, works for looking at each day now shown in chronological order" />
   </component>
 </project>

@@ -1,22 +1,40 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {api} from "~/utils/api";
+import moment from 'moment-timezone';
 
-const CreateEntryWizard = () => {
-    const [entryTime, setEntryTime] = useState('');
+
+const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment.Moment, onEntrySubmit: () => void }) => {
+
+    const [entryTime, setEntryTime] = useState(currentDate.format('YYYY-MM-DDTHH:mm'));
     const [mealDescription, setMealDescription] = useState('');
     const [additionalComments, setAdditionalComments] = useState('');
     const [kilojoules, setKilojoules] = useState('');
 
-    const {mutate} = api.foodDiary.postFoodDiaryEntry.useMutation();
+    useEffect(() => {
+        setEntryTime(currentDate.format('YYYY-MM-DDTHH:mm'));
+    }, [currentDate]);
+
+    const {mutate} = api.foodDiary.postFoodDiaryEntry.useMutation({
+        onSuccess: () => {
+            onEntrySubmit();
+        },
+    });
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        const entryTimeInUtc = moment(entryTime).utc().format('YYYY-MM-DDTHH:mm');
         const input = {
-            entryTime,
+            entryTime: entryTimeInUtc,
             mealDescription,
             additionalComments,
             kilojoules: Number(kilojoules)
         };
+
         mutate(input);
+        setMealDescription('');
+        setAdditionalComments('');
+        setKilojoules('');
+        console.log("Entry submitted, calling refetch");
+
     };
 
     return (
@@ -26,7 +44,7 @@ const CreateEntryWizard = () => {
                     type="datetime-local"
                     value={entryTime}
                     onChange={(e) => setEntryTime(e.target.value)}
-                    className="bg-transparent w-full"
+                    className="bg-transparent w-full text-accentOne"
                 />
             </div>
             <div>
@@ -34,7 +52,7 @@ const CreateEntryWizard = () => {
                     placeholder="Meal Description"
                     value={mealDescription}
                     onChange={(e) => setMealDescription(e.target.value)}
-                    className="bg-transparent w-full"
+                    className="bg-transparent w-full text-accentOne"
                 />
             </div>
             <div>
@@ -42,7 +60,7 @@ const CreateEntryWizard = () => {
                     placeholder="Additional Comments"
                     value={additionalComments}
                     onChange={(e) => setAdditionalComments(e.target.value)}
-                    className="bg-transparent w-full"
+                    className="bg-transparent w-full text-accentOne"
                 />
             </div>
             <div>
@@ -50,12 +68,12 @@ const CreateEntryWizard = () => {
                     placeholder="Kilojoules"
                     value={kilojoules}
                     onChange={(e) => setKilojoules(e.target.value)}
-                    className="bg-transparent w-full"
+                    className="bg-transparent w-full text-accentOne"
                     type="number"
                 />
             </div>
             <div>
-                <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Submit Entry</button>
+                <button type="submit" className="bg-secondary text-accentTwo py-2 px-4 rounded">Submit Entry</button>
             </div>
         </form>
     );
