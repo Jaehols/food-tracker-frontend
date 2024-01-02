@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {api} from "~/utils/api";
 import moment from 'moment-timezone';
+import {ThemeContext} from "~/pages/ThemeContext";
 
 
 const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment.Moment, onEntrySubmit: () => void }) => {
-
+    const {theme, setTheme} = useContext(ThemeContext);
     const [entryTime, setEntryTime] = useState(currentDate.format('YYYY-MM-DDTHH:mm'));
     const [mealDescription, setMealDescription] = useState('');
     const [additionalComments, setAdditionalComments] = useState('');
@@ -43,7 +44,7 @@ const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment
                         placeholder="Meal Description"
                         value={mealDescription}
                         onChange={(e) => setMealDescription(e.target.value)}
-                        className="bg-accentTwo bg-opacity-20 rounded-lg w-full text-accentOne placeholder-accentOne p-1"
+                        className={`bg-${theme}-accentTwo bg-opacity-20 rounded-lg w-full text-${theme}-accentOne placeholder-${theme}-accentOne p-1`}
                     />
                 </div>
                 <div className="flex-1">
@@ -51,7 +52,7 @@ const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment
                         type="datetime-local"
                         value={entryTime}
                         onChange={(e) => setEntryTime(e.target.value)}
-                        className="bg-accentTwo bg-opacity-20 rounded-lg w-full text-accentOne p-1"
+                        className={`bg-${theme}-accentTwo bg-opacity-20 rounded-lg w-full text-${theme}-accentOne p-1`}
                     />
                 </div>
             </div>
@@ -60,7 +61,7 @@ const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment
             placeholder="Additional Comments"
             value={additionalComments}
             onChange={(e) => setAdditionalComments(e.target.value)}
-            className="bg-accentTwo bg-opacity-20 rounded-lg w-full text-accentOne placeholder-accentOne p-1"
+            className={`bg-${theme}-accentTwo bg-opacity-20 rounded-lg w-full text-${theme}-accentOne placeholder-${theme}-accentOne p-1`}
             rows={4}
         ></textarea>
             </div>
@@ -69,12 +70,12 @@ const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment
                     placeholder="Kilojoules"
                     value={kilojoules}
                     onChange={(e) => setKilojoules(e.target.value)}
-                    className="bg-accentTwo bg-opacity-20 rounded-lg w-full text-accentOne placeholder-accentOne p-1"
+                    className={`bg-${theme}-accentTwo bg-opacity-20 rounded-lg w-full text-${theme}-accentOne placeholder-${theme}-accentOne p-1`}
                     type="number"
                 />
             </div>
             <div className="mt-4">
-                <button type="submit" className="bg-secondary text-accentTwo py-2 px-4 rounded">Submit Entry</button>
+                <button type="submit" className={`bg-${theme}-secondary text-${theme}-accentTwo py-2 px-4 rounded`}>Submit Entry</button>
             </div>
         </form>
     );
