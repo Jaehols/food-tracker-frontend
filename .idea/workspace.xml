@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Added 4 themes and dynamic theme switching&#10;&#10;some further reaching changes to the tailwind formatting to allow for dynamic themeing and some importing of icons&#10;&#10;Added python script to generate safelist and use safelist in tailwind config">
-      <change afterPath="$PROJECT_DIR$/src/components/UserSettingsProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/api/routers/userSettings.ts" afterDir="false" />
+    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Themes changes now updates in backend and applies without error">
+      <change afterPath="$PROJECT_DIR$/src/utils/themeUtils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ThemeProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ThemeProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserSettingsProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserSettingsProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/themeChanger.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/themeChanger.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/api/root.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/api/root.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/routers/userSettings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/api/routers/userSettings.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +106,7 @@
       <workItem from="1704076253466" duration="5653000" />
       <workItem from="1704082899524" duration="12177000" />
       <workItem from="1704161354319" duration="4728000" />
-      <workItem from="1704249558025" duration="6403000" />
+      <workItem from="1704249558025" duration="13835000" />
     </task>
     <task id="LOCAL-00001" summary="Finally got posting new entries working my lord I cant believe I'm comitting to main">
       <option name="closed" value="true" />
@@ -141,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703838390339</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Themes now being correctly rendered from the user settings fetched from the DB if possible">
+      <option name="closed" value="true" />
+      <created>1704260546204</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1704260546204</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +162,8 @@
     <MESSAGE value="Very messy date at the moment, works for looking at each day now shown in chronological order" />
     <MESSAGE value="Dayview correctly refreshing on new entry submission" />
     <MESSAGE value="Committing straight to dev don't kill me&#10;&#10;delete entries plus some reformatting on the entry form" />
-    <option name="LAST_COMMIT_MESSAGE" value="Committing straight to dev don't kill me&#10;&#10;delete entries plus some reformatting on the entry form" />
+    <MESSAGE value="Themes now being correctly rendered from the user settings fetched from the DB if possible" />
+    <MESSAGE value="Themes changes now updates in backend and applies without error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Themes changes now updates in backend and applies without error" />
   </component>
 </project>

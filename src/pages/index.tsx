@@ -22,7 +22,6 @@ export default function Home() {
     const startDate = currentDate.clone().startOf('day').format('YYYY-MM-DD');
     const endDate = currentDate.clone().endOf('day').format('YYYY-MM-DD');
     const {data: authorList, isLoading: fullListLoading, refetch } = api.foodDiary.getAllEntriesForUserInDateRange.useQuery({startDate, endDate})
-    //const {data: settings, isLoading: settingsLoading} = api.userSettings.getUserSettings.useQuery();
 
     useEffect(() => {
         refetch();

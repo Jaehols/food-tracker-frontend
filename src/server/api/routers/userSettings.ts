@@ -2,6 +2,7 @@ import {z} from "zod";
 
 import {createTRPCRouter, privateProcedure} from "~/server/api/trpc";
 import {env} from "~/env";
+import {convertThemeStringOnSettings} from "~/utils/themeUtils";
 
 const apiVersion = "v1/";
 const baseUrl: string = env.BASE_API_URL + apiVersion + "user/";
@@ -21,19 +22,7 @@ export type UserSettings = {
     energyShown: boolean;
     energyUnit: string;
 }
-const themeMapping: Record<string, string> = {
-    "CLASSIC-GREEN": "classicGreen",
-    "LIGHT": "light",
-    "PURPLE-MOONLIGHT": "purpleMoonlight",
-    "PINK": "pink"
-};
 
-const convertThemeStringOnSettings = (settings: UserSettings) => {
-    const key = settings.preferredTheme;
-
-    const mappedTheme = themeMapping[key];
-    return mappedTheme ? { ...settings, preferredTheme: mappedTheme } : settings;
-};
 
 export const userSettingsRouter = createTRPCRouter({
 
@@ -45,4 +34,26 @@ export const userSettingsRouter = createTRPCRouter({
             }
             return convertThemeStringOnSettings(await response.json() as UserSettings);
         }),
+
+    postUserSettings: privateProcedure.input(
+        z.object({
+            preferredTheme: z.string(),
+            energyShown: z.boolean(),
+            energyUnit: z.string()
+        })
+    ).mutation(async ({ input, ctx }): Promise<{ location: string }> => {
+        const inputWithDate = {...input, lastUpdated: new Date().toISOString()};
+        const response = await fetch(baseUrl+`userSettings/${ctx.userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(inputWithDate)
+        });
+        if (!response.ok) {
+            console.log(response);
+            throw new Error('Failed to post user settings');
+        }
+        return { location: response.headers.get('Location') ?? '' };
+    }),
 });
