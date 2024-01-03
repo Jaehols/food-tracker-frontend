@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Committing straight to dev don't kill me&#10;&#10;delete entries plus some reformatting on the entry form">
-      <change afterPath="$PROJECT_DIR$/generateSafelist.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ThemeProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/themeChanger.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/ThemeContext.tsx" afterDir="false" />
+    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Added 4 themes and dynamic theme switching&#10;&#10;some further reaching changes to the tailwind formatting to allow for dynamic themeing and some importing of icons&#10;&#10;Added python script to generate safelist and use safelist in tailwind config">
+      <change afterPath="$PROJECT_DIR$/src/components/UserSettingsProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/api/routers/userSettings.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entryWizard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entryWizard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/topNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/topNav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ThemeProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ThemeProvider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/root.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/api/root.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +69,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/themes&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/user-settings&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -112,6 +107,7 @@
       <workItem from="1704076253466" duration="5653000" />
       <workItem from="1704082899524" duration="12177000" />
       <workItem from="1704161354319" duration="4728000" />
+      <workItem from="1704249558025" duration="6403000" />
     </task>
     <task id="LOCAL-00001" summary="Finally got posting new entries working my lord I cant believe I'm comitting to main">
       <option name="closed" value="true" />
