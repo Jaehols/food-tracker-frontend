@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Themes changes now updates in backend and applies without error">
-      <change afterPath="$PROJECT_DIR$/src/utils/themeUtils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SettingsChanger.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserSettingsProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserSettingsProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ThemeProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ThemeProvider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/themeChanger.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/themeChanger.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/api/routers/userSettings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/api/routers/userSettings.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/topNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/topNav.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +107,8 @@
       <workItem from="1704076253466" duration="5653000" />
       <workItem from="1704082899524" duration="12177000" />
       <workItem from="1704161354319" duration="4728000" />
-      <workItem from="1704249558025" duration="13835000" />
+      <workItem from="1704249558025" duration="14513000" />
+      <workItem from="1704421474546" duration="9433000" />
     </task>
     <task id="LOCAL-00001" summary="Finally got posting new entries working my lord I cant believe I'm comitting to main">
       <option name="closed" value="true" />
@@ -148,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704260546204</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Themes changes now updates in backend and applies without error">
+      <option name="closed" value="true" />
+      <created>1704273188997</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704273188997</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

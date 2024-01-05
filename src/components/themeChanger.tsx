@@ -1,5 +1,4 @@
 import React, {useContext, useRef} from 'react';
-import {api} from "~/utils/api";
 import { ThemeContext } from '~/pages/ThemeContext';
 import {FaLeaf} from "react-icons/fa";
 import {BsFillMoonStarsFill} from "react-icons/bs";
@@ -13,8 +12,7 @@ interface ThemeChangerProps {
 
 const ThemeChanger: React.FC<ThemeChangerProps> = ({ anchorEl}) => {
     const {theme, setTheme} = useContext(ThemeContext);
-    const {mutate: postUserSettings} = api.userSettings.postUserSettings.useMutation();
-    const { userSettings, updateUserTheme } = useContext(UserSettingsContext)
+    const {updateUserTheme } = useContext(UserSettingsContext)
     useRef<HTMLDivElement>(null);
     const topValue = (anchorEl?.offsetTop ?? 0) + (anchorEl?.offsetHeight ?? 0);
     const leftValue = anchorEl?.offsetLeft ?? 0;

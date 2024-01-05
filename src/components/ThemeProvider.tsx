@@ -7,8 +7,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const [theme, setTheme] = useState('classicGreen');
 
     useEffect(() => {
-        if (userSettings?.preferredTheme) {
-            setTheme(userSettings.preferredTheme);
+        if (userSettings.userSettings?.preferredTheme) {
+            setTheme(userSettings.userSettings.preferredTheme);
         }
     }, [userSettings]);
 
