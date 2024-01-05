@@ -3,15 +3,22 @@ import {UserButton, useUser} from "@clerk/nextjs";
 import {ThemeContext} from "~/components/ThemeContext";
 import ThemeChanger from "~/components/themeChanger";
 import {FaBrush} from "react-icons/fa6";
+import SettingsChanger from "~/components/SettingsChanger";
+import {IoSettingsSharp} from "react-icons/io5";
 
 const TopNavBar = () => {
     const { theme, setTheme } = useContext(ThemeContext);
     const[showThemeChanger, setShowThemeChanger] = React.useState(false);
+    const[showUserSettings, setShowUserSettings] = React.useState(false);
     const themeButtonRef = useRef(null);
+    const settingsButtonRef = useRef(null);
     const toggleThemeChanger = () => {
 
         setShowThemeChanger(prev => !prev);
     };
+    const toggleUserSettings = () => {
+        setShowUserSettings(prev => !prev);
+    }
 
     return (
         <nav className={`bg-${theme}-secondary shadow-md`}>
@@ -29,6 +36,11 @@ const TopNavBar = () => {
                         </div>
                     </div>
                     <div className="hidden md:flex items-center space-x-1">
+                        <button ref={settingsButtonRef} onClick={toggleUserSettings} className={`p-3 hover:bg-${theme}-primary rounded-lg`}>
+                            <IoSettingsSharp className={`h-5 w-5 text-${theme}-accentTwo`}/>
+                        </button>
+                        {showUserSettings && <SettingsChanger anchorEl={settingsButtonRef.current}/>}
+
                         <button ref={themeButtonRef} onClick={toggleThemeChanger} className={`p-3 hover:bg-${theme}-primary rounded-lg`}>
                             <FaBrush className={`h-5 w-5 text-${theme}-accentTwo`}/>
                         </button>
