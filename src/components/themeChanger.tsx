@@ -1,5 +1,5 @@
 import React, {useContext, useRef} from 'react';
-import { ThemeContext } from '~/pages/ThemeContext';
+import { ThemeContext } from '~/components/ThemeContext';
 import {FaLeaf} from "react-icons/fa";
 import {BsFillMoonStarsFill} from "react-icons/bs";
 import {IoSunny} from "react-icons/io5";

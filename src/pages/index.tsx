@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import {api} from "~/utils/api";
-import {FoodDiaryEntry} from "~/server/api/routers/foodEntry";
+import {type FoodDiaryEntry} from "~/server/api/routers/foodEntry";
 import dayjs from "dayjs";
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {LoadingSpinner} from "~/components/loading";
@@ -9,14 +9,13 @@ import CreateEntryWizard from "~/components/entryWizard";
 import moment from 'moment-timezone';
 import React, {useContext, useEffect, useState} from "react";
 import { TrashIcon } from '@heroicons/react/24/outline';
-import {ThemeContext} from "~/pages/ThemeContext";
-import ThemeChanger from "~/components/themeChanger";
+import {ThemeContext} from "~/components/ThemeContext";
 import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
 dayjs.extend(localizedFormat)
 
 
 export default function Home() {
-    const {theme, setTheme} = useContext(ThemeContext);
+    const {theme} = useContext(ThemeContext);
     const [currentDate, setCurrentDate] = useState(moment());
     const [forceRenderKey, setForceRenderKey] = useState(Date.now());
 
@@ -25,12 +24,12 @@ export default function Home() {
     const {data: authorList, isLoading: fullListLoading, refetch } = api.foodDiary.getAllEntriesForUserInDateRange.useQuery({startDate, endDate})
 
     useEffect(() => {
-        refetch();
+        void refetch();
     }, [startDate, endDate]);
 
     const refetchData = () => {
-        refetch();
-        setForceRenderKey(Date.now()); // Update the key to force re-render
+        void refetch();
+        setForceRenderKey(Date.now());
     };
 
 
@@ -101,7 +100,7 @@ export default function Home() {
 
     const ProgressOneDay = () => {
         setCurrentDate(prevDate => prevDate.clone().add(1, 'day'));
-        refetch()
+        void refetch()
     }
     const ProgressBackOneDay = () => {
         setCurrentDate(prevDate => prevDate.clone().subtract(1, 'day'));
