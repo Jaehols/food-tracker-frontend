@@ -6,14 +6,17 @@ import "~/styles/globals.css";
 import React from "react";
 import TopNavBar from "~/components/topNav";
 import {ThemeProvider} from "~/components/ThemeProvider";
+import UserSettingsProvider from "~/components/UserSettingsProvider";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
       <ClerkProvider {...pageProps}>
-          <ThemeProvider>
-              <TopNavBar />
-              <Component {...pageProps} />
-          </ThemeProvider>
+          <UserSettingsProvider>
+              <ThemeProvider>
+                  <TopNavBar />
+                  <Component {...pageProps} />
+              </ThemeProvider>
+          </UserSettingsProvider>
       </ClerkProvider>
   );
 };
