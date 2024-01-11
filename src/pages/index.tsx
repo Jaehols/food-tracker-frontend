@@ -9,7 +9,7 @@ import CreateEntryWizard from "~/components/entryWizard";
 import moment from 'moment-timezone';
 import React, {useContext, useEffect, useState} from "react";
 import { TrashIcon } from '@heroicons/react/24/outline';
-import {ThemeContext} from "~/pages/ThemeContext";
+import {ThemeContext} from "~/components/ThemeContext";
 import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
 dayjs.extend(localizedFormat)
 

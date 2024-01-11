@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {api} from "~/utils/api";
 import moment from 'moment-timezone';
-import {ThemeContext} from "~/pages/ThemeContext";
+import {ThemeContext} from "~/components/ThemeContext";
 
 
 const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment.Moment, onEntrySubmit: () => void }) => {

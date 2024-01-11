@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useRef} from 'react';
 import {UserButton, useUser} from "@clerk/nextjs";
-import {ThemeContext} from "~/pages/ThemeContext";
+import {ThemeContext} from "~/components/ThemeContext";
 import ThemeChanger from "~/components/themeChanger";
 import {FaBrush} from "react-icons/fa6";
 
