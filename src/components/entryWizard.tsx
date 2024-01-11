@@ -2,9 +2,14 @@ import React, {useContext, useEffect, useState} from 'react';
 import {api} from "~/utils/api";
 import moment from 'moment-timezone';
 import {ThemeContext} from "~/components/ThemeContext";
+import { Dayjs } from 'dayjs';
 
+type CreateEntryWizard_Props = {
+    currentDate: Dayjs,
+    onEntrySubmit: () => void,
+}
 
-const CreateEntryWizard = ({ currentDate, onEntrySubmit }: { currentDate: moment.Moment, onEntrySubmit: () => void }) => {
+const CreateEntryWizard = ({ currentDate, onEntrySubmit }: CreateEntryWizard_Props) => {
     const {theme, setTheme} = useContext(ThemeContext);
     const [entryTime, setEntryTime] = useState(currentDate.format('YYYY-MM-DDTHH:mm'));
     const [mealDescription, setMealDescription] = useState('');
