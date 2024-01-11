@@ -1,35 +1,111 @@
 import Head from "next/head";
-import {UserButton, useUser} from "@clerk/nextjs";
 
 import {api} from "~/utils/api";
-import {FoodDiaryEntry} from "~/server/api/routers/foodEntry";
+import {type FoodDiaryEntry} from "~/server/api/routers/foodEntry";
 import dayjs from "dayjs";
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import {LoadingPage, LoadingSpinner} from "~/components/loading";
+import {LoadingSpinner} from "~/components/loading";
 import CreateEntryWizard from "~/components/entryWizard";
+import moment from 'moment-timezone';
+import React, {useContext, useEffect, useState} from "react";
+import { TrashIcon } from '@heroicons/react/24/outline';
+import {ThemeContext} from "~/components/ThemeContext";
+import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
 dayjs.extend(localizedFormat)
 
 
 export default function Home() {
-    const {data: data, isLoading: resultsLoading} = api.foodDiary.getFoodDiaryEntry.useQuery({id: "e5aea67f-1fa2-4f0d-8c5f-b3f182b63431", userId: "TestAdmin"})
-    if (resultsLoading) return LoadingPage()
+    const {theme} = useContext(ThemeContext);
+    const [currentDate, setCurrentDate] = useState(moment());
+    const [forceRenderKey, setForceRenderKey] = useState(Date.now());
 
-    const user = useUser();
+    const startDate = currentDate.clone().startOf('day').format('YYYY-MM-DD');
+    const endDate = currentDate.clone().endOf('day').format('YYYY-MM-DD');
+    const {data: authorList, isLoading: fullListLoading, refetch } = api.foodDiary.getAllEntriesForUserInDateRange.useQuery({startDate, endDate})
 
-    const ShortDiaryView = (props: FoodDiaryEntry) => {
-        return(
-            <div className="flex gap-3">
-                <div className="flex flex-col">
-                    <div className="flex gap-3">
-                        <div className="font-bold">{props.mealDescription}</div>
-                        <div className="text-gray-500">{dayjs(props.entryTime).format(`LLLL`)}</div>
+    useEffect(() => {
+        void refetch();
+    }, [startDate, endDate]);
+
+    const refetchData = () => {
+        void refetch();
+        setForceRenderKey(Date.now());
+    };
+
+
+    const ShortDiaryView = (props: {
+        entry: FoodDiaryEntry;
+        key: number;
+        }) => {
+
+        const {mutate} = api.foodDiary.deleteFoodDiaryEntry.useMutation()
+        const [isVisible, setIsVisible] = useState(true);
+
+        const handleDelete = () => {
+            mutate({entryId: props.entry.entryId});
+            setIsVisible(false);
+        };
+
+        if (!isVisible) return null;
+
+        return (
+            <div className={`flex gap-3 p-2 bg-${theme}-secondary bg-opacity-20 rounded-lg`}>
+                <div className="flex flex-col w-full">
+                    <div className="flex gap-3 justify-between">
+                        <div className={`font-bold text-${theme}-accentTwo`}>{props.entry.mealDescription}</div>
+                        <div className={`text-${theme}-accentOne`}>{dayjs(props.entry.entryTime).format(`LT`)}</div>
                     </div>
-                    <div className="text-gray-500">{props.additionalComments}</div>
-                    <div className="text-gray-500">{props.kilojoules}</div>
+                <div>
+                    <div className={`text-${theme}-accentOne`}>{props.entry.additionalComments}</div>
+                </div>
+                <div className="flex justify-between">
+                        <div>
+                            <div className={`text-${theme}-accentOne`}>Kilojoules: {props.entry.kilojoules}</div>
+                        </div>
+                        <button
+                            onClick={handleDelete}
+                            className={`p-2 rounded-full bg-${theme}-secondary hover:bg-${theme}-accentOne focus:outline-none focus:ring-2 focus:ring-${theme}-accentOne focus:ring-opacity-50`}
+                        >
+                            <TrashIcon className={`h-5 w-5 text-${theme}-primary`} />
+                        </button>
+                    </div>
                 </div>
             </div>
-        )
+        );
     }
+
+    const DayView = ({ entries, isLoading, date }: { entries: FoodDiaryEntry[], isLoading: boolean, date: Date }) => {
+        let title = dayjs(date).format('dddd, MMMM D');
+        if(moment(date).isSame(moment(), 'day')) title = 'Today'
+        if(moment(date).isSame(moment().subtract(1, 'day'), 'day')) title = 'Yesterday'
+        if(moment(date).isSame(moment().add(1, 'day'), 'day')) title = 'Tomorrow'
+
+        if (isLoading) return(
+            <div className="flex justify-center items-center h-screen">
+                <LoadingSpinner size={60}/>
+            </div>
+        )
+
+        const sortedEntries = [...entries].sort((a, b) => a.entryTime.localeCompare(b.entryTime));
+
+        return (
+            <div className="flex flex-col gap-4">
+                <div className={`justify-center flex text-4xl text-${theme}-accentOne font-bold`}>{title}</div>
+                {sortedEntries.map((entry, index) => (
+                    <ShortDiaryView key={index} entry={entry}/>
+                ))}
+            </div>
+        );
+    }
+
+    const ProgressOneDay = () => {
+        setCurrentDate(prevDate => prevDate.clone().add(1, 'day'));
+        void refetch()
+    }
+    const ProgressBackOneDay = () => {
+        setCurrentDate(prevDate => prevDate.clone().subtract(1, 'day'));
+    };
+
     return (
         <>
             <Head>
@@ -37,14 +113,24 @@ export default function Home() {
                 <meta name="description" content="Generated by create-t3-app"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <main className="flex justify-center h-screen">
-                <div className=" w-full md:max-w-2xl border-x h-full border-b-slate-400">
-                    <div className="flex border-b border-slate-400 p-4 ">
-                        {!!user.isSignedIn && "hello " + user.user.firstName && <CreateEntryWizard/>}
-                        <UserButton afterSignOutUrl="/"/>
+            <main className={`flex justify-center min-h-screen bg-${theme}-primary`}>
+                <div className=" w-full md:max-w-2xl h-full ">
+                    <div className={`flex border-b border-${theme}-accentOne p-4 w-full bg`} key={forceRenderKey}>
+                        {<CreateEntryWizard onEntrySubmit={refetchData} currentDate={currentDate}/>}
                     </div>
-                    <div className="flex flex-col">
-                        <div>{ShortDiaryView(data!)}</div>
+                    <div className=" flex justify-between p-2">
+                        <button onClick={ProgressBackOneDay}
+                                className={`p-2 rounded-full bg-${theme}-secondary hover:bg-${theme}-accentOne focus:outline-none focus:ring-2 focus:ring-${theme}-accentOne focus:ring-opacity-50`}>
+                            <FaArrowLeft className={`h-5 w-5 text-${theme}-primary`}/>
+                        </button>
+                        <button onClick={ProgressOneDay}
+                                className={`p-2 rounded-full bg-${theme}-secondary hover:bg-${theme}-accentOne focus:outline-none focus:ring-2 focus:ring-${theme}-accentOne focus:ring-opacity-50`}>
+                            <FaArrowRight className={`h-5 w-5 text-${theme}-primary`}/>
+                        </button>
+                    </div>
+                    <div className={`flex flex-col border-${theme}-accentOne`}>
+                        <div><DayView entries={authorList!} isLoading={fullListLoading}
+                                      date={moment(startDate).toDate()}/></div>
                     </div>
                 </div>
             </main>
