@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import {ThemeContext} from "~/pages/ThemeContext";
+import {ThemeContext} from "~/components/ThemeContext";
 import {UserSettingsContext} from "~/components/UserSettingsProvider";
 import {styled, Switch, ToggleButton, ToggleButtonGroup} from '@mui/material';
 
