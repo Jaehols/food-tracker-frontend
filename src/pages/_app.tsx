@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 
 import "~/styles/globals.css";
 import React from "react";
-import TopNavBar from "~/components/topNav";
+import TopNavBar from "~/components/TopNav";
 import {ThemeProvider} from "~/components/ThemeProvider";
 
 const inter = Inter({ subsets: ['latin'] })
@@ -15,12 +15,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <ClerkProvider {...pageProps}>
       <ThemeProvider>
         <div className={inter.className}>
-          <nav>
-            <TopNavBar />
-          </nav>
-          <main>
-            <Component {...pageProps} />
-          </main>
+          <TopNavBar />
+          <Component {...pageProps} />
         </div>
       </ThemeProvider>
     </ClerkProvider>

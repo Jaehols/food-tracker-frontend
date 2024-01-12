@@ -11,7 +11,7 @@ interface ThemeChangerProps {
 
 const ThemeChanger: React.FC<ThemeChangerProps> = ({ anchorEl}) => {
     const {theme, setTheme} = useContext(ThemeContext);
-    useRef<HTMLDivElement>(null);
+    
     const topValue = (anchorEl?.offsetTop ?? 0) + (anchorEl?.offsetHeight ?? 0);
     const leftValue = anchorEl?.offsetLeft ?? 0;
 
