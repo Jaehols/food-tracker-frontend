@@ -6,7 +6,6 @@ import dayjs, { Dayjs } from "dayjs";
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {LoadingSpinner} from "~/components/loading";
 import CreateEntryWizard from "~/components/entryWizard";
-import moment from 'moment-timezone';
 import React, {useContext, useEffect, useState} from "react";
 import { TrashIcon } from '@heroicons/react/24/outline';
 import {ThemeContext} from "~/components/ThemeContext";
