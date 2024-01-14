@@ -62,7 +62,7 @@ const CreateEntryWizard = ({ date, onSubmit, onCancel }: CreateEntryWizard_Props
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <div className="flex justify-between gap-4">
+      <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="description" className={`text-${theme}-secondary`}>Description</label>
           <input
@@ -73,7 +73,7 @@ const CreateEntryWizard = ({ date, onSubmit, onCancel }: CreateEntryWizard_Props
             className={`bg-${theme}-accentTwo bg-opacity-20 rounded-lg w-full text-${theme}-accentOne placeholder-${theme}-accentOne placeholder:opacity-20 placeholder:italic p-1`}
           />
         </div>
-        <div className="flex-1">
+        <div>
           <label className={`text-${theme}-secondary`}>Time</label>
           <input
             type="time"
@@ -105,9 +105,9 @@ const CreateEntryWizard = ({ date, onSubmit, onCancel }: CreateEntryWizard_Props
               type="number"
             />
           </div>
-        <select value={unit} onChange={(e) => setUnit(e.target.value as EnergyUnit)} className={`bg-${theme}-accentTwo bg-opacity-20 rounded-r-lg w-full text-${theme}-accentOne placeholder-${theme}-accentOne placeholder:opacity-20 placeholder:italic p-1`}>
-          {Object.values(EnergyUnit).map(unit => <option key={unit} value={unit}>{unit}</option>)}
-        </select>
+          <select value={unit} onChange={(e) => setUnit(e.target.value as EnergyUnit)} className={`bg-${theme}-accentTwo bg-opacity-20 rounded-r-lg w-full text-${theme}-accentOne placeholder-${theme}-accentOne placeholder:opacity-20 placeholder:italic p-1`}>
+            {Object.values(EnergyUnit).map(unit => <option key={unit} value={unit}>{unit}</option>)}
+          </select>
         </div>
       </div>
       <div className="mt-8 flex gap-2 flex-row-reverse">
