@@ -1,8 +1,8 @@
-import {ReactNode, useState} from "react";
-import {ThemeContext} from "~/components/ThemeContext";
+import {ReactNode, useState} from "react"
+import {ThemeContext} from "~/components/ThemeContext"
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-    const [theme, setTheme] = useState('classicGreen');
+    const [theme, setTheme] = useState('classicGreen')
 
     const contextValue = {
         theme,
