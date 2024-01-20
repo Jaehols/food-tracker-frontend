@@ -1,9 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {api} from "~/utils/api";
-import moment from 'moment-timezone';
-import {ThemeContext} from "~/components/ThemeContext";
-import dayjs, { Dayjs } from 'dayjs';
-import { Button } from './Button';
+import React, {useContext, useEffect, useState} from 'react'
+import {api} from "~/utils/api"
+import {ThemeContext} from "~/components/ThemeContext"
+import dayjs, { Dayjs } from 'dayjs'
+import { Button } from './Button'
 
 enum EnergyUnit {
   KILOJOULES = 'Kilojoules',
@@ -48,7 +47,6 @@ const CreateEntryWizard = ({ date, onSubmit, onCancel }: CreateEntryWizard_Props
       .set('month', date.get('month'))
       .set('day', date.get('day'))
       .format('YYYY-MM-DDTHH:mm');
-    console.log('entryTime', entryTimeAdjusted)
     const kilojoules = Number(energy) * (unit === EnergyUnit.CALORIES ? 4.184 : 1);
     const input = {
       entryTime: entryTimeAdjusted,

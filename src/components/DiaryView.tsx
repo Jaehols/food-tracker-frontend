@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
-import { FoodDiaryEntry } from "~/server/api/routers/foodEntry";
-import { ThemeContext } from "./ThemeContext";
-import { api } from "~/utils/api";
-import dayjs from "dayjs";
-import { TrashIcon } from '@heroicons/react/24/outline';
+import { useContext, useState } from "react"
+import { FoodDiaryEntry } from "~/server/api/routers/foodEntry"
+import { ThemeContext } from "./ThemeContext"
+import { api } from "~/utils/api"
+import dayjs from "dayjs"
+import { TrashIcon } from '@heroicons/react/24/outline'
 
 type DiaryView_Props = {
   entry: FoodDiaryEntry,
@@ -11,7 +11,7 @@ type DiaryView_Props = {
 
 export const DiaryView = ({entry}: DiaryView_Props) => {
   const {theme} = useContext(ThemeContext);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(true)
   const {mutate} = api.foodDiary.deleteFoodDiaryEntry.useMutation()
 
   const { entryId, mealDescription, entryTime, additionalComments, kilojoules } = entry

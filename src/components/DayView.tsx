@@ -1,12 +1,12 @@
-import dayjs, { Dayjs } from "dayjs";
-import { useContext, useEffect, useState } from "react";
-import { FoodDiaryEntry } from "~/server/api/routers/foodEntry";
-import { ThemeContext } from "./ThemeContext";
-import { LoadingSpinner } from "./Loading";
-import { DiaryView } from "./DiaryView";
-import { FaArrowLeft, FaArrowRight, FaPlus } from "react-icons/fa";
-import EntryWizard from "./EntryWizard";
-import { Button } from "./Button";
+import dayjs, { Dayjs } from "dayjs"
+import { useContext, useEffect, useState } from "react"
+import {api} from "~/utils/api"
+import { ThemeContext } from "./ThemeContext"
+import { LoadingSpinner } from "./Loading"
+import { DiaryView } from "./DiaryView"
+import { FaArrowLeft, FaArrowRight, FaPlus } from "react-icons/fa"
+import EntryWizard from "./EntryWizard"
+import { Button } from "./Button"
 
 const getDateRenderProps = (date: Dayjs) => {
   const yesterday = dayjs().subtract(1, 'day')
@@ -82,16 +82,22 @@ const DayViewHeader = ({ date, onChangeDay }: DayViewHeader_Props) => {
 }
 
 type EntryWizardButton_Props = {
-  date: Dayjs
+  date: Dayjs,
+  onSubmit: () => void,
 }
 
-const EntryWizardButton = ({ date }: EntryWizardButton_Props) => {
+const EntryWizardButton = ({ date, onSubmit }: EntryWizardButton_Props) => {
   const { theme } = useContext(ThemeContext)
   const [ isEnabled, setEnabled ] = useState<boolean>(false)
 
   useEffect(() => {
     setEnabled(false)
   }, [date])
+
+  const handleSubmit = () => {
+    setEnabled(false)
+    onSubmit()
+  }
 
   return <div>
     {!isEnabled && <Button className={`w-full py-2 px-4 rounded`} onClick={() => setEnabled(true)}>
@@ -106,31 +112,32 @@ const EntryWizardButton = ({ date }: EntryWizardButton_Props) => {
         <span className='text-lg font-semibold'>New Entry</span>
       </div>
       <div className={`p-8 border-2 border-t-0 rounded-b-lg border-${theme}-secondary`}>
-        <EntryWizard date={date} onSubmit={() => setEnabled(false)} onCancel={() => setEnabled(false)} />
+        <EntryWizard date={date} onSubmit={handleSubmit} onCancel={() => setEnabled(false)} />
       </div>
     </div>}
   </div>
 }
 
-type DayView_Props = {
-  entries: FoodDiaryEntry[],
-  isLoading: boolean,
-}
-
-export const DayView = ({ entries, isLoading }: DayView_Props) => {
+export const DayView = () => {
   const [ date, setDate ] = useState<Dayjs>(dayjs())
+  const [startDate, endDate] = [date.startOf('day'), date.endOf('day')]
+
+  const {data, isLoading, refetch } = api.foodDiary.getAllEntriesForUserInDateRange.useQuery({startDate: startDate.format('YYYY-MM-DD'), endDate: endDate.format('YYYY-MM-DD')})
+
+  const refetchData = () => void refetch()
+  useEffect(refetchData, [startDate, endDate])
 
   if (isLoading) return <div className="flex justify-center items-center h-screen">
     <LoadingSpinner size={60}/>
   </div>
 
-  const sortedEntries = [...entries].sort((a, b) => a.entryTime.localeCompare(b.entryTime));
+  const sortedEntries = !!data ? [...data].sort((a, b) => a.entryTime.localeCompare(b.entryTime)) : []
 
   return (
     <div className="flex flex-col gap-4 p-4">
       <DayViewHeader date={date} onChangeDay={(delta) => setDate(d => d.add(delta, 'days'))} />
       {sortedEntries.map((entry, index) => <DiaryView key={index} entry={entry}/>)}
-      <EntryWizardButton date={date} />
+      <EntryWizardButton date={date} onSubmit={refetchData} />
     </div>
-  );
+  )
 }

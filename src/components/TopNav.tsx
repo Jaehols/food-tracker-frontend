@@ -1,5 +1,5 @@
-import React, {useCallback, useContext, useRef} from 'react';
-import {UserButton, useUser} from "@clerk/nextjs";
+import React, {useContext, useRef} from 'react';
+import {UserButton} from "@clerk/nextjs";
 import {ThemeContext} from "~/components/ThemeContext";
 import ThemeChanger from "~/components/ThemeChanger";
 import {FaBrush} from "react-icons/fa6";
