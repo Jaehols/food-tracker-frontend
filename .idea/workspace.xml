@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Fixed bug where the user settings the was being saved in the backend form" />
+    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Theme changing correctly need to merge into main my god">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -152,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704944076755</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Theme changing correctly need to merge into main my god">
+      <option name="closed" value="true" />
+      <created>1706095124432</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1706095124432</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +190,7 @@
     <MESSAGE value="Finished rebase  to develop" />
     <MESSAGE value="Minor cleanup" />
     <MESSAGE value="Fixed bug where the user settings the was being saved in the backend form" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug where the user settings the was being saved in the backend form" />
+    <MESSAGE value="Theme changing correctly need to merge into main my god" />
+    <option name="LAST_COMMIT_MESSAGE" value="Theme changing correctly need to merge into main my god" />
   </component>
 </project>
