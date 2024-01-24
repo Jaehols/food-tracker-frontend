@@ -39,12 +39,12 @@ const UserSettingsProvider: React.FC<UserSettingsProviderProps> = ({ children })
 
     const updateUserSettings = (newSettings: UserSettings) => {
         setUserSettings(newSettings);
-        postUserSettings(newSettings)
+        postUserSettings({...newSettings, preferredTheme: frontendThemeToBackendTheme(newSettings.preferredTheme)})
     };
 
     const updateUserTheme = (theme: string) => {
         if (userSettings) {
-            updateUserSettings({...userSettings, preferredTheme: frontendThemeToBackendTheme(theme)});
+            updateUserSettings({...userSettings, preferredTheme: theme});
         }
     }
 

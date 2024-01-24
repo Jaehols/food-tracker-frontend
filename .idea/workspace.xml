@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Minor cleanup">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SettingsChanger.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SettingsChanger.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Fixed bug where the user settings the was being saved in the backend form" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,7 +62,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feature/themes",
+    "git-widget-placeholder": "feature/user-settings",
     "last_opened_file_path": "C:/Users/James/Desktop/Everything/Personal Programming/food-tracker-frontend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -184,6 +179,7 @@
     <MESSAGE value="Committing straight to dev don't kill me&#10;&#10;delete entries plus some reformatting on the entry form" />
     <MESSAGE value="Finished rebase  to develop" />
     <MESSAGE value="Minor cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor cleanup" />
+    <MESSAGE value="Fixed bug where the user settings the was being saved in the backend form" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug where the user settings the was being saved in the backend form" />
   </component>
 </project>
