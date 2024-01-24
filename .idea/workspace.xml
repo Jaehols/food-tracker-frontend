@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Committing straight to dev don't kill me&#10;&#10;delete entries plus some reformatting on the entry form">
+    <list default="true" id="c4b57c96-8e98-4f62-8013-02c141af61b7" name="Changes" comment="Theme changing correctly need to merge into main my god">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +64,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feature/themes",
+    "git-widget-placeholder": "feature/user-settings",
     "last_opened_file_path": "C:/Users/James/Desktop/Everything/Personal Programming/food-tracker-frontend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -107,6 +106,7 @@
       <workItem from="1704161354319" duration="4728000" />
       <workItem from="1704931201725" duration="979000" />
       <workItem from="1704932212454" duration="5499000" />
+      <workItem from="1704944130303" duration="6262000" />
     </task>
     <task id="LOCAL-00001" summary="Finally got posting new entries working my lord I cant believe I'm comitting to main">
       <option name="closed" value="true" />
@@ -140,7 +140,29 @@
       <option name="project" value="LOCAL" />
       <updated>1703838390339</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Finished rebase  to develop">
+      <created>1704943522408</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1704943522408</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Minor cleanup">
+      <created>1704944076755</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704944076755</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Theme changing correctly need to merge into main my god">
+      <option name="closed" value="true" />
+      <created>1706095124432</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1706095124432</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +187,10 @@
     <MESSAGE value="Very messy date at the moment, works for looking at each day now shown in chronological order" />
     <MESSAGE value="Dayview correctly refreshing on new entry submission" />
     <MESSAGE value="Committing straight to dev don't kill me&#10;&#10;delete entries plus some reformatting on the entry form" />
-    <option name="LAST_COMMIT_MESSAGE" value="Committing straight to dev don't kill me&#10;&#10;delete entries plus some reformatting on the entry form" />
+    <MESSAGE value="Finished rebase  to develop" />
+    <MESSAGE value="Minor cleanup" />
+    <MESSAGE value="Fixed bug where the user settings the was being saved in the backend form" />
+    <MESSAGE value="Theme changing correctly need to merge into main my god" />
+    <option name="LAST_COMMIT_MESSAGE" value="Theme changing correctly need to merge into main my god" />
   </component>
 </project>

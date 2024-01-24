@@ -1,8 +1,16 @@
-import {ReactNode, useState} from "react"
-import {ThemeContext} from "~/components/ThemeContext"
+import {ReactNode, useContext, useEffect, useState} from "react";
+import {UserSettingsContext} from "~/components/UserSettingsProvider";
+import {ThemeContext} from "~/components/ThemeContext";
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-    const [theme, setTheme] = useState('classicGreen')
+    const userSettings = useContext(UserSettingsContext);
+    const [theme, setTheme] = useState('classicGreen');
+
+    useEffect(() => {
+        if (userSettings.userSettings?.preferredTheme) {
+            setTheme(userSettings.userSettings.preferredTheme);
+        }
+    }, [userSettings]);
 
     const contextValue = {
         theme,

@@ -7,19 +7,22 @@ import "~/styles/globals.css";
 import React from "react";
 import TopNavBar from "~/components/TopNav";
 import {ThemeProvider} from "~/components/ThemeProvider";
+import UserSettingsProvider from "~/components/UserSettingsProvider";
 
 const inter = Inter({ subsets: ['latin'] })
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <ClerkProvider {...pageProps}>
-      <ThemeProvider>
-        <div className={inter.className}>
-          <TopNavBar />
-          <Component {...pageProps} />
-        </div>
-      </ThemeProvider>
-    </ClerkProvider>
+      <ClerkProvider {...pageProps}>
+          <UserSettingsProvider>
+              <ThemeProvider>
+                  <div className={inter.className}>
+                      <TopNavBar/>
+                      <Component {...pageProps} />
+                  </div>
+              </ThemeProvider>
+          </UserSettingsProvider>
+      </ClerkProvider>
   );
 };
 
